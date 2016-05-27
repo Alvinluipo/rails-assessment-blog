@@ -7,8 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="main_content">
+    <div id="header">
 
-<%= yield %>
+        <%= link_to "Back to All Posts", root_path %>
+        <%= link_to("Sign out", destroy_user_session_path, :method => "delete") %>
+        <%= link_to("Sign in", new_user_session_path) %>
+        <%= link_to("Sign up", new_user_registration_path) %>
+    <%= link_to("login with facebook!", "/auth/facebook") %>
 
+
+      <% if user_signed_in? %>
+        <div class="buttons">
+          <button class="button"><%= link_to "New Post", new_post_path %></button>
+ 
+        </div>
+      <% end %>
+    </div>
+
+    <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg, class: "alert") %>
+    <% end %>
+
+    <%= yield %>
+  </div>
 </body>
 </html>
+
