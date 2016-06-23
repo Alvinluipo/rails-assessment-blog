@@ -3,7 +3,7 @@
  
       def initialize(user)
         can :read, Post
-        can :create, Post
+        can :create, Post, owner_id: user.id
         unless user.nil? # guest
           # CanCan accepts a hash of conditions;
           # here, we're saying that the Post's user_id

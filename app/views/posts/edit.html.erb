@@ -1,3 +1,9 @@
-<h1>Edit Post</h1>
-<%= render 'form' %>
+
+<% if current_user %>
+  <% if current_user.id == @post.user_id %>
+  <h1>Edit Post</h1>
+  <%= render 'form' %>
+<% end %>
+<% end %>
+
 

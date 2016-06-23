@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-devise_for :users
+devise_for :users, :path => 'accounts', :controllers => { registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :posts  do 
     resources :comments
   end
@@ -9,6 +9,8 @@ devise_for :users
 
   get '/about', to: 'pages#about'
 
-  get '/auth/facebook/callback' => 'sessions#create'
+  
 
 end
+
+
