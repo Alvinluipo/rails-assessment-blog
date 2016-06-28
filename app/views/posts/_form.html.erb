@@ -21,8 +21,22 @@
     <%= f.text_area :body %>
   </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <% if @tags %>
+    <% @tags.each do |tag| %>
+      <div>
+          <%= check_box_tag "post[tag_ids][]", tag.id, @post.tags.include?(tag) %>
+          <%= tag.content %>
+      </div>
+    <% end %>
+  <% end %>
 
+    <%= f.fields_for @tag do |tag_builder| %>
+    <%= tag_builder.label :content %>
+    <%= tag_builder.text_field :content %><br>
+    <% end %>
+  
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>

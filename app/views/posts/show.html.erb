@@ -20,7 +20,9 @@
   <div id="comments">
 
     <h2><%= @post.comments.count %> Comments</h2>
-    <%= render @post.comments %>
+    <% @post.comments.each do |comment| %>
+      <%= render @post.comments %>
+    <% end %>
 
 
     <h3>Add a comment:</h3>

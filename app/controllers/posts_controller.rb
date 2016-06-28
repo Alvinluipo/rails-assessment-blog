@@ -6,9 +6,12 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @tags = Tag.all
+    @tag = Tag.new
   end
 
   def create
+    
     @post = Post.new(post_params)
     @post.user_id = current_user.id
       
@@ -48,7 +51,7 @@ class PostsController < ApplicationController
 
   private 
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, {tag_ids: []}, :tags_attributes => [:id, :content])
     end
 
 end
