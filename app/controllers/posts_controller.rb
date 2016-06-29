@@ -6,8 +6,9 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.tags << Tag.new
     @tags = Tag.all
-    @tag = Tag.new
+    #@tag = Tag.new
   end
 
   def create
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
 
   private 
     def post_params
-      params.require(:post).permit(:title, :body, {tag_ids: []}, :tags_attributes => [:id, :content])
+      params.require(:post).permit(:title, :body, {tag_ids: []}, :tags_attributes => [:content])
     end
 
 end

@@ -15,6 +15,7 @@
 
   <p class="body">
     <%= @post.body %>
+
   </p>
 
   <div id="comments">
@@ -23,7 +24,6 @@
     <% @post.comments.each do |comment| %>
       <%= render @post.comments %>
     <% end %>
-
 
     <h3>Add a comment:</h3>
     <%= render "comments/form" %>

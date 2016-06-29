@@ -30,8 +30,8 @@
     <% end %>
   <% end %>
 
-    <%= f.fields_for @tag do |tag_builder| %>
-    <%= tag_builder.label :content %>
+    <%= f.fields_for :tags do |tag_builder| %>
+    <%= tag_builder.label :tag %>
     <%= tag_builder.text_field :content %><br>
     <% end %>
   
