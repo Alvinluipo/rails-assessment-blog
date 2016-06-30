@@ -13,8 +13,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:comment][:post_id])
-    @comment = @post.comments.find(params[:id])
+   
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
     @comment.destroy
 
     redirect_to user_post_path(current_user.id, @post)
