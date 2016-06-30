@@ -24,9 +24,11 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def most_popular_post
-    @popular_post = Post.all.each do |comment|
-      comment.count.order('created_at DESC')
+  def self.most_popular_post
+    @post_with_most_comments = []
+    @popular_post = Post.all.each do |post|
+      @post_with_most_comments << post.comments.count
+
     end
   end
 
