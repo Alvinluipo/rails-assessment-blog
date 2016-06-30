@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+
   has_many :tag_posts
   has_many :tags, through: :tag_posts
   belongs_to :user
@@ -23,13 +24,10 @@ class Post < ActiveRecord::Base
     end
   end
 
-  private 
-
-
-
-
-
-
-
+  def most_popular_post
+    @popular_post = Post.all.each do |comment|
+      comment.count.order('created_at DESC')
+    end
+  end
 
 end
