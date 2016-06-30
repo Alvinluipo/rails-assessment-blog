@@ -31,7 +31,17 @@
   <% end %>
 
     <%= f.fields_for :tags do |tag_builder| %>
-    <%= tag_builder.label :tag %>
+    <%= tag_builder.label :tag1 %>
+    <%= tag_builder.text_field :content %><br>
+    <% end %>
+
+    <%= f.fields_for :tags do |tag_builder| %>
+    <%= tag_builder.label :tag2 %>
+    <%= tag_builder.text_field :content %><br>
+    <% end %>
+
+    <%= f.fields_for :tags do |tag_builder| %>
+    <%= tag_builder.label :tag3 %>
     <%= tag_builder.text_field :content %><br>
     <% end %>
   

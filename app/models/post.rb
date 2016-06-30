@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   has_many :tag_posts
   has_many :tags, through: :tag_posts
-
+  belongs_to :user
   accepts_nested_attributes_for :tags
 
 
@@ -21,5 +21,11 @@ class Post < ActiveRecord::Base
       end
     end
   end
+
+
+  def most_popular_post
+    @post.comments.count
+  end
+
 
 end

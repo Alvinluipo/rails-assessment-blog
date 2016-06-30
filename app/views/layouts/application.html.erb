@@ -19,7 +19,7 @@
 
       <% if user_signed_in? %>
         <div class="buttons">
-          <button class="button"><%= link_to "New Post", new_post_path %></button>
+          <button class="button"><%= link_to "New Post", new_user_post_path(current_user) %></button>
  
         </div>
       <% end %>
