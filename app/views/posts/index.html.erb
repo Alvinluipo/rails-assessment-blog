@@ -1,6 +1,19 @@
+
+<h2>Most Popular Post</h2>
+<h2 class="title"><%= link_to @popular.title, [@popular.user, @popular] %></h2>
+    <p class="date"><%= @popular.created_at.strftime("%B, %d, %Y") %></p> <br>
+    <br>
+    
+
+ 
+
+
+
+<h2>All the posts</h2>
 <% @posts.each do |post| %>
   <div class="post_wrapper">
     <h2 class="title"><%= link_to post.title, [post.user, post] %></h2>
     <p class="date"><%= post.created_at.strftime("%B, %d, %Y") %></p>
   </div>
 <% end %>
+

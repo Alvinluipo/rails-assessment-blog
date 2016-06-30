@@ -24,12 +24,14 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def self.most_popular_post
-    @post_with_most_comments = []
-    @popular_post = Post.all.each do |post|
-      @post_with_most_comments << post.comments.count
+  def self.most_comments
+    self.maximum(:comments_count)
+  end
 
-    end
+  def self.most_popular_post
+    #self.order("comments_count DESC").LIMIT
+    self.where(:comments_count => self.most_comments) 
+
   end
 
 end
