@@ -13,12 +13,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    
+
     @post = Post.new(post_params)
     @post.user_id = current_user.id
       
     if @post.save
-      redirect_to post_user_path
+      redirect_to user_posts_path(@post)
     else
       render 'new'
     end
@@ -30,13 +30,15 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @user = current_user
     @post = Post.find(params[:id])
   end
 
   def update
+
     @post = Post.find(params[:id])
     if @post.update(params[:post].permit(:title, :body))
-      redirect_to  @post 
+      redirect_to  user_posts_path(@post)
     else 
       render 'edit'
     end

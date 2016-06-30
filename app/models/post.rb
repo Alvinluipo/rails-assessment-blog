@@ -23,9 +23,7 @@ class Post < ActiveRecord::Base
   end
 
 
-  def most_popular_post
-    @post.comments.count
-  end
+
 
 
 end
