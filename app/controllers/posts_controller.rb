@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @user = current_user
     @post = Post.new
     @post.tags << Tag.new
     @tags = Tag.all
@@ -17,7 +18,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
       
     if @post.save
-      redirect_to @post
+      redirect_to post_user_path
     else
       render 'new'
     end
@@ -25,6 +26,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
