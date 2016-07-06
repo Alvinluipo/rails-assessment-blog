@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   has_many :tag_posts
   has_many :tags, through: :tag_posts
   belongs_to :user
-  accepts_nested_attributes_for :tags
+  #accepts_nested_attributes_for :tags
 
 
 
@@ -14,23 +14,18 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: {minimum: 5 }
   validates :body, presence: true
 
-  def tags_attributes=(tags_attributes)
-    tags_attributes.each do |i, tag_attributes|
-      if Tag.find_by_id(tag_attributes[:id])
-        Tag.update(tag_attributes[:id], tag_attributes)
-      elsif tag_attributes[:content] != ""
-        self.tags.build(tag_attributes)
-      end
+  def tags_attributes=(tag_attributes)
+    tag_attributes.values.each do |tag_attributes|
+      tag = Tag.find_or_create_by(tag_attributes)
+      self.tags << tag
+      
     end
   end
 
-  def self.most_comments
-    self.maximum(:comments_count)
-  end
 
   def self.most_popular_post
-    #self.order("comments_count DESC").LIMIT
-    self.where(:comments_count => self.most_comments) 
+  
+    Post.order("comments_count DESC").take
 
   end
 

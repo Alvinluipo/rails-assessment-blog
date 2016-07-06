@@ -21,14 +21,7 @@
     <%= f.text_area :body %>
   </p>
 
-  <% if @tags %>
-    <% @tags.each do |tag| %>
-      <div>
-          <%= check_box_tag "post[tag_ids][]", tag.id, @post.tags.include?(tag) %>
-          <%= tag.content %>
-      </div>
-    <% end %>
-  <% end %>
+  <%= collection_check_boxes(:tag, :tag_ids, Tag.all, :id, :content) %><br>
 
     <%= f.fields_for :tags do |tag_builder| %>
     <%= tag_builder.label :tag1 %>
