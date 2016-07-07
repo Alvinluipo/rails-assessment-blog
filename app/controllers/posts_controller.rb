@@ -1,15 +1,27 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+
+
   def index
     @popular = Post.most_popular_post
-    
 
-    @posts = Post.all.order('created_at DESC')
+    
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @posts = @user.posts.order('created_at DESC')
+    else
+
+      @posts = Post.all.order('created_at DESC')
+    end
 
   end
 
   def new
-    @user = current_user
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    else
+      @user = current_user
+    end
     @post = Post.new
       3.times do 
         @post.tags.build
@@ -18,12 +30,16 @@ class PostsController < ApplicationController
   end
 
   def create
-    @user = current_user
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    else
+      @user = current_user
+    end
     @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post.user_id = @user.id
       
     if @post.save
-      redirect_to user_posts_path(@post)
+      redirect_to user_posts_path(@user)
     else
       3.times do 
         @post.tags.build
@@ -33,7 +49,9 @@ class PostsController < ApplicationController
   end
 
   def show
+
     @post = Post.find(params[:id])
+    
     @comment = Comment.new
   end
 

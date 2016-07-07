@@ -1,8 +1,11 @@
 
+<% if @popular %>
+
 <h2>Most Popular Post</h2>
-<h2 class="title"><%= link_to @popular.title, [@popular.user, @popular] %></h2>
-    <p class="date"><%= @popular.created_at.strftime("%B, %d, %Y") %></p> <br>
-    <br>
+  <h2 class="title"><%= link_to @popular.title, [@popular.user, @popular] %></h2>
+      <p class="date"><%= @popular.created_at.strftime("%B, %d, %Y") %></p> <br>
+      <br>
+<% end %>
     
 
 <h2>All the posts</h2>

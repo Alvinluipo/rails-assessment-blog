@@ -11,17 +11,19 @@
   <strong><h1>Welcome to Alvin's Blog Post</h1></strong>
     <div id="header">
 
-        <%= link_to "Back to All Posts", root_path %>
+        <%= link_to "Back to All Posts", posts_path %>
+        
         <%= link_to("Sign out", destroy_user_session_path, :method => "delete") %>
         <%= link_to("Sign in", new_user_session_path) %>
         <%= link_to("Sign up", new_user_registration_path) %>
+     
       
 
 
       <% if user_signed_in? %>
         <div class="buttons">
-          <button class="button"><%= link_to "New Post", new_user_post_path(current_user) %></button>
- 
+          <button class="button"><%= link_to "New Post", new_post_path %></button>
+          <%= link_to("My post", user_posts_path(current_user)) %>
         </div>
       <% end %>
     </div>

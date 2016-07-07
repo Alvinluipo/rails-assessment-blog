@@ -16,6 +16,11 @@
   <p class="body">
     <%= @post.body %>
 
+    <h4>Tags</h4>
+        <% @post.tags.each do |tag| %>
+        <li>  <%= tag.content %> </li>
+        <% end %>
+
   </p>
 
   <div id="comments">
@@ -28,9 +33,6 @@
     <%= render "comments/form" %>
   </div>
 
-    <% @post.tags.each do |tag| %>
-    <%= tag.content %>
-    <% end %>
 
 
 

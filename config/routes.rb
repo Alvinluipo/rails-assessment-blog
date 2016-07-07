@@ -3,7 +3,7 @@ devise_for :users, :path => 'accounts', :controllers => { registrations: 'regist
   resources :users do
       resources :posts
   end
-
+  resources :posts, only: [:index, :new, :create]
   resources :comments
 
   root "posts#index"
