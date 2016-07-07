@@ -21,7 +21,7 @@
     <%= f.text_area :body %>
   </p>
 
-  <%= collection_check_boxes(:tag, :tag_ids, Tag.all, :id, :content) %><br>
+  <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :content %><br>
 
     <%= f.fields_for :tags do |tag_builder| %>
     <%= tag_builder.label :tag1 %>

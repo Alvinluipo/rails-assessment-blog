@@ -11,8 +11,7 @@ class PostsController < ApplicationController
   def new
     @user = current_user
     @post = Post.new
-    @post.tags << Tag.new
-    @tags = Tag.all
+    @tag = @post.tags.build
     #@tag = Tag.new
   end
 

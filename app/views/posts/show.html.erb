@@ -28,7 +28,11 @@
     <%= render "comments/form" %>
   </div>
 
-    <%= @post_with_most_comments %>
+    <% @post.tags.each do |tag| %>
+    <%= tag.content %>
+    <% end %>
+
+
 
 
 </div>
