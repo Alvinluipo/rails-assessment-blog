@@ -11,7 +11,9 @@ class PostsController < ApplicationController
   def new
     @user = current_user
     @post = Post.new
-    @tag = @post.tags.build
+      3.times do 
+        @post.tags.build
+      end
     #@tag = Tag.new
   end
 
@@ -23,6 +25,9 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to user_posts_path(@post)
     else
+      3.times do 
+        @post.tags.build
+      end
       render 'new'
     end
   end
