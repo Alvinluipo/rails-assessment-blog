@@ -25,6 +25,7 @@ class PostsController < ApplicationController
     @post = Post.new
       3.times do 
         @post.tags.build
+        
       end
     #@tag = Tag.new
   end
@@ -36,6 +37,8 @@ class PostsController < ApplicationController
       @user = current_user
     end
     @post = Post.new(post_params)
+
+
     @post.user_id = @user.id
       
     if @post.save

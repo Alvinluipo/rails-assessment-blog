@@ -11,15 +11,20 @@ class Post < ActiveRecord::Base
   has_many :users, through: :comments
   has_many :comments, dependent: :destroy
 
+
+
   validates :title, presence: true, length: {minimum: 5 }
   validates :body, presence: true
 
 
+
+
   def tags_attributes=(tag_attributes)
+   
     tag_attributes.values.each do |tag_attributes|
       if tag_attributes[:content].present?
       tag = Tag.find_or_create_by(content: tag_attributes[:content])
-      self.tags << tag
+      self.tags << tag unless self.tags.include?(tag)
       end
       
     end
@@ -31,5 +36,7 @@ class Post < ActiveRecord::Base
     Post.order("comments_count DESC").take
 
   end
+
+
 
 end

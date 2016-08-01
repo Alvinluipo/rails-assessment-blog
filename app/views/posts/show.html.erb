@@ -7,7 +7,7 @@
     Submitted <%= time_ago_in_words(@post.created_at) %> Ago
     <% if current_user %>
       <% if current_user.id == @post.user_id %>
-        | <%= link_to 'Edit', edit_user_post_path(@post.user, @post) %>
+        
         | <%= link_to 'Delete', user_post_path(@post.user, @post), method: :delete, data: {confirm: 'Are you sure?' } %>
       <% end %>
     <% end %>
@@ -17,8 +17,11 @@
     <%= @post.body %>
 
     <h4>Tags</h4>
-        <% @post.tags.each do |tag| %>
+        <% @post.tags.uniq.each do |tag| %>
+        
         <li>  <%= tag.content %> </li>
+        
+
         <% end %>
 
   </p>

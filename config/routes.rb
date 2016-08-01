@@ -6,9 +6,13 @@ devise_for :users, :path => 'accounts', :controllers => { registrations: 'regist
   resources :posts, only: [:index, :new, :create]
   resources :comments
 
+  resources :tags
+
   root "posts#index"
 
   get '/about', to: 'pages#about'
+
+
 
   
 
