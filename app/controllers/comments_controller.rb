@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
         @post.comments_count += 1
         @post.save    
       redirect_to user_post_path(current_user.id, @post)
+     
     else
       flash[:notice] = "Comment not created"
     end
