@@ -1,6 +1,6 @@
 <strong><%= comment.name %></strong></p>
-<%= comment.body %></p>
-<%= time_ago_in_words(comment.created_at) %> Ago </p>
+<%= comment.body %><p>
+<h5><%= time_ago_in_words(comment.created_at) %> Ago </h5>
 
 
   <% if current_user %>

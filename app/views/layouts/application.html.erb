@@ -24,6 +24,7 @@
         <div class="buttons">
           <button class="button"><%= link_to "New Post", new_post_path %></button>
           <button class="button"><%= link_to("My post", user_posts_path(current_user)) %></button>
+          <button type="button" id="all_comments">all comments</button>
         </div>
       <% end %>
     </div>
