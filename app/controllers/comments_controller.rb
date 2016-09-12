@@ -5,10 +5,10 @@ class CommentsController < ApplicationController
         format.html {render :index}
         format.json {render json: @comments}
     end
-
-
-
   end
+
+
+
 
   def create
     

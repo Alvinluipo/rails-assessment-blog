@@ -1,7 +1,6 @@
 <% @comments.each do |comment| %>
-<li><%= comment.post %>
-    <%= comment.name %>
-</li>
-
+  <li><%= comment.post.title %>
+    <%= comment.post.body %>
+  </li>
 <% end %>
 
