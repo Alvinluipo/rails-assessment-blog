@@ -7,6 +7,16 @@ class CommentsController < ApplicationController
     end
   end
 
+  def show
+    @comment = Comment.where(user_id: current_user.id)
+
+      respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @comments}
+      end
+  end
+
+
 
 
 

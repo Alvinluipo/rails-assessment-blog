@@ -3,15 +3,19 @@ $( document ).ready(function() {
   $("#all_comments").click(function(e){
 
     clearDom();
-    getComments();
+    getPosts();
     e.preventDefault();
+  });
+
+  $("#show_comment").click(function() {
+    getComment();
   });
 });  
 
-  function getComments() {
+  function getPosts() {
   
     $.get("comments.json", function(response) {
-      populateComments(response);
+      populatePosts(response);
     });
   };
 
@@ -20,17 +24,45 @@ $( document ).ready(function() {
     $( "#display" ).empty();
   }
 
-  function populateComments(r){
-    $( r ).each(function( index ) {
+  function populatePosts(r){
+    r.forEach(function( postData ) {
+      var cur = new Comment(postData)
       var post = "<li>"
 
-        post += (this.post.title).toString();
+        post += (cur.postTitle).toString();
         post += "<br>"
-        post += (this.post.body).toString();
-        post += "</li>"
+        post += (cur.postBody).toString();
+        post += "</li>" 
+        post += (cur.toButton);
+        post += "<br>"
+
+
       $("#display").append(post);
 
-      console.log(this.post.title);
+  
     });
   }
+
+  // function getComment() {
+  //   alert("testing");
+  
+  //   $.get("show.json", function(response) {
+  //     populatePosts(response);
+  //   });
+  // };
+
+  function Comment(d) {
+
+    this.name = d.name;
+    this.body = d.body;
+    this.id = d.id;
+    this.postTitle = d.post.title;
+    this.postBody = d.post.body;
+    this.toButton =  "<button id='show_comment" + this.id + "'> Show Comment </button>";  
+  }
+
+  Comment.prototype.last = function(){
+    var lastComment = Comment.last;
+  }
+
 
