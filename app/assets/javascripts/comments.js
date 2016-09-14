@@ -7,14 +7,40 @@ $( document ).ready(function() {
     e.preventDefault();
   });
 
-  // $("#show_comment").click(function() {
-  //   getComment();
-  // });
+$('form[id="new_comment"]').submit(function(event) {
+   event.preventDefault();
+   
+   var values = $(this).serialize();
+   this.reset();
+   var posting = $.post('/comments', values);
+
+   posting.done(function(data) {
+        var cur = new Comment(data)
+        var comment = "<strong>"
+
+          comment += (cur.name).toString();
+          comment += "</strong>" 
+          comment += "<br>"
+          comment += (cur.body).toString();
+       
 
 
 
-});  
+      $("#comments").append(comment);
 
+     // var cur = new Post(data);
+     // $(".list").append("<li>" + cur.id + ':' + cur.content + '</li>');
+   });
+ });
+
+
+}); 
+  // function newPost() {
+  //   $('form[id="new_post"]').submit(function(e) {
+  //     e.preventDefault();
+
+  //   })
+  // }
 
   function getPosts() {
   
@@ -52,8 +78,17 @@ $( document ).ready(function() {
 
   function getComment(target) {
      $.get("/comments/" + target+".json", function(response){
-      debugger;
-      $("#display_comment" + target.toString()).append(response.body);
+        var cur = new Comment(response)
+        var comment = "<li>"
+
+          comment += (cur.name).toString();
+          comment += "<br>"
+          comment += (cur.body).toString();
+          comment += "</li>" 
+
+          comment += "<br>"
+
+      $("#display_comment" + target.toString()).replaceWith(comment);
     });
   }
 
