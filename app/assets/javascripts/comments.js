@@ -7,10 +7,14 @@ $( document ).ready(function() {
     e.preventDefault();
   });
 
-  $("#show_comment").click(function() {
-    getComment();
-  });
+  // $("#show_comment").click(function() {
+  //   getComment();
+  // });
+
+
+
 });  
+
 
   function getPosts() {
   
@@ -33,7 +37,7 @@ $( document ).ready(function() {
         post += "<br>"
         post += (cur.postBody).toString();
         post += "</li>" 
-        post += (cur.toButton);
+        post += (cur.toButton());
         post += "<br>"
 
 
@@ -41,15 +45,17 @@ $( document ).ready(function() {
 
   
     });
+      $(".js-comment").click(function() {
+        getComment(this.id.match(/\d+$/));
+      })
   }
 
-  // function getComment() {
-  //   alert("testing");
-  
-  //   $.get("show.json", function(response) {
-  //     populatePosts(response);
-  //   });
-  // };
+  function getComment(target) {
+     $.get("/comments/" + target+".json", function(response){
+      debugger;
+      $("#display_comment" + target.toString()).append(response.body);
+    });
+  }
 
   function Comment(d) {
 
@@ -58,11 +64,9 @@ $( document ).ready(function() {
     this.id = d.id;
     this.postTitle = d.post.title;
     this.postBody = d.post.body;
-    this.toButton =  "<button id='show_comment" + this.id + "'> Show Comment </button>";  
+    this.toButton = function() {return "<button id='show_comment" + this.id + "' class='js-comment'> Show Comment </button><div id='display_comment" + this.id + "'></div";};
+
   }
 
-  Comment.prototype.last = function(){
-    var lastComment = Comment.last;
-  }
 
 

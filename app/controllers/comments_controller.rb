@@ -8,11 +8,11 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comment = Comment.where(user_id: current_user.id)
+    @comment = Comment.find(params[:id])
 
       respond_to do |format|
         format.html {render :show}
-        format.json {render json: @comments}
+        format.json {render json: @comment}
       end
   end
 
