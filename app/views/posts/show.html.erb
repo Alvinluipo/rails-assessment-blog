@@ -31,7 +31,7 @@
     <!-- <button type="button" id="all_comments<%= @post.id %>">all comments</button>
  -->
   <div id="comments">
-    <h2><%= @post.comments.count %> Comments</h2>
+    <h2 id="comment_count"><%= @post.comments.count %> Comments</h2>
     <%= render @post.comments %>
 
 

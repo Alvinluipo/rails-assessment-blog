@@ -1,10 +1,10 @@
 $( document ).ready(function() {
   
-  $("#all_comments").click(function(e){
+  $("#all_comments").click(function(){
 
     clearDom();
     getPosts();
-    e.preventDefault();
+ 
   });
 
 $('form[id="new_comment"]').submit(function(event) {
@@ -19,21 +19,16 @@ $('form[id="new_comment"]').submit(function(event) {
         var comment = "<strong>"
 
           comment += (cur.name).toString();
-          comment += "</strong>" 
-          comment += "<br>"
+          comment += "</strong></p>" 
           comment += (cur.body).toString();
-       
-
-
-
+          comment += "<h5> Just now </h5>"
       $("#comments").append(comment);
+      $("#comment_count").load(location.href + " #comment_count");
 
      // var cur = new Post(data);
      // $(".list").append("<li>" + cur.id + ':' + cur.content + '</li>');
-   });
- });
-
-
+    });
+  });
 }); 
   // function newPost() {
   //   $('form[id="new_post"]').submit(function(e) {
@@ -65,12 +60,10 @@ $('form[id="new_comment"]').submit(function(event) {
         post += "</li>" 
         post += (cur.toButton());
         post += "<br>"
-
-
-      $("#display").append(post);
-
-  
+    $("#display").append(post);
+    
     });
+
       $(".js-comment").click(function() {
         getComment(this.id.match(/\d+$/));
       })
@@ -85,7 +78,6 @@ $('form[id="new_comment"]').submit(function(event) {
           comment += "<br>"
           comment += (cur.body).toString();
           comment += "</li>" 
-
           comment += "<br>"
 
       $("#display_comment" + target.toString()).replaceWith(comment);
