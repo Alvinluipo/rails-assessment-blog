@@ -23,7 +23,7 @@ $('form[id="new_comment"]').submit(function(event) {
           comment += (cur.body).toString();
           comment += "<h5> Just now </h5></p>"
           comment += "<a class='botton' data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='/comments/" + cur.id+ "'>Delete</a>"
-
+          comment += "<br></p>"
       $("#comments").append(comment);
       $("#comment_count").load(location.href + " #comment_count");
 
