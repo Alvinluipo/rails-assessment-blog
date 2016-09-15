@@ -21,9 +21,12 @@ $('form[id="new_comment"]').submit(function(event) {
           comment += (cur.name).toString();
           comment += "</strong></p>" 
           comment += (cur.body).toString();
-          comment += "<h5> Just now </h5>"
+          comment += "<h5> Just now </h5></p>"
+          comment += "<a class='botton' data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='/comments/" + cur.id+ "'>Delete</a>"
+
       $("#comments").append(comment);
       $("#comment_count").load(location.href + " #comment_count");
+
 
      // var cur = new Post(data);
      // $(".list").append("<li>" + cur.id + ':' + cur.content + '</li>');
